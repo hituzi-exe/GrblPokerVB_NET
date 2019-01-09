@@ -1,9 +1,9 @@
 ﻿Public Class HandRankChecker
 
-    Private rate As Rate
+    Private rate As IRate
     Private numOfAKindMap As List(Of Integer)
 
-    Public Sub New(r As Rate)
+    Public Sub New(r As IRate)
         rate = r
         numOfAKindMap = CreateNumOfAKindMap()
     End Sub
@@ -30,7 +30,6 @@
 
         Dim flushFlg As Boolean = IsFlush(hand1, hand2, hand3, hand4, hand5)
         Dim straightFlg As Boolean = IsStraight(hand1, hand2, hand3, hand4, hand5)
-
 
 
         If Not (flushFlg Or straightFlg) Then
@@ -78,11 +77,11 @@
                               hand4 As Integer,
                               hand5 As Integer) As Tuple(Of Integer, Integer)
         Dim cntList = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
-        Dim cnt = {hand1 & (&H1FFF),
-                   hand2 & (&H1FFF),
-                   hand3 & (&H1FFF),
-                   hand4 & (&H1FFF),
-                   hand5 & (&H1FFF)}
+        Dim cnt = {hand1 And (&H1FFF),
+                   hand2 And (&H1FFF),
+                   hand3 And (&H1FFF),
+                   hand4 And (&H1FFF),
+                   hand5 And (&H1FFF)}
 
         For Each c In cnt
             cntList(MyLog2(c)) += 1
@@ -159,9 +158,6 @@
 
         Return Int(Math.Log(x, 2))
     End Function
-
-
-
 
 
     Public Function BitCount(i As Integer) As Integer

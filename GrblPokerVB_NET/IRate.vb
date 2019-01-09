@@ -1,4 +1,4 @@
-﻿Public Interface Rate
+﻿Public Interface IRate
 
     Function NotPair() As Integer
     Function HighCard() As Integer

@@ -36,6 +36,27 @@ Imports GrblPokerVB_NET
         Assert.AreEqual(c1, &B10000001000000000000)
     End Sub
 
+    <TestMethod()> Public Sub TestMyLog2_case1()
+        Dim r As New Rate1000()
+        Dim c As New HandRankChecker(r)
+
+        Dim res = c.MyLog2(&B10000001000)
+
+        Assert.AreEqual(res, 3)
+    End Sub
+
+
+
+    <TestMethod()> Public Sub TestMyLog2_case2()
+        Dim r As New Rate1000()
+        Dim c As New HandRankChecker(r)
+
+        Dim res = c.MyLog2(&B10001000000)
+
+        Assert.AreEqual(res, 6)
+    End Sub
+
+
 
     <TestMethod()> Public Sub TestIsFlush()
         Dim card As New Cards()

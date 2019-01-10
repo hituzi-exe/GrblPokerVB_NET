@@ -33,7 +33,7 @@
 
 
         If flushFlg And straightFlg Then
-            If isRoyalStraightFlush(hand1, hand2, hand3, hand4, hand5) Then
+            If IsRoyalStraightFlush(hand1, hand2, hand3, hand4, hand5) Then
                 Return rate.RoyalStraightFlush()
 
             End If
@@ -127,7 +127,7 @@
 
 
 
-    Public Function isRoyalStraightFlush(hand1 As Integer,
+    Public Function IsRoyalStraightFlush(hand1 As Integer,
                                          hand2 As Integer,
                                          hand3 As Integer,
                                          hand4 As Integer,

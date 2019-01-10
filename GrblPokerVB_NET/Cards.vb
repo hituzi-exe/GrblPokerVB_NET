@@ -1,13 +1,13 @@
 ﻿Public Class Cards
     Public Shared JOKER As Integer = &HF0000
 
-    Public Function CreateDeck()
+    Public Function CreateDeck() As List(Of Integer)
         ' S = suit bit(sdhc), N = num bit(a23456789tjqk)
         ' card : chds ---k qjt9 8765 432a
         Dim num As IEnumerable(Of Integer) = Enumerable.Range(0, 13).Select(Of Integer)(Function(e) 1 << e)
         Dim suit As IEnumerable(Of Integer) = Enumerable.Range(15, 4).Select(Of Integer)(Function(e) 1 << e)
 
-        Dim deck As New ArrayList()
+        Dim deck As New List(Of Integer)
         For Each n In num
             For Each s In suit
                 deck.Add(n + s)

@@ -3,7 +3,9 @@
 Module Module1
 
     Function Main() As Integer
-        Return GetMaxExpectation("s1", "s3", "h6", "h8", "dt")
+        Dim res = GetMaxExpectation("s1", "s3", "h6", "h8", "J")
+
+        Return res
         'Dim args As String() = Environment.GetCommandLineArgs()
 
         'Return GetMaxExpectation(args(1), args(2), args(3), args(4), args(5))
@@ -53,13 +55,20 @@ Module Module1
                 maxExp = tmpExp
                 maxExpHand = hand
             End If
-
         Next
 
-        For Each h In maxExpHand
-            Console.Write(card.Convert2(h) & ",")
+        Dim res As Integer = 0
+        For i As Integer = 0 To hands.Count - 1
+            For Each h In maxExpHand
+                If h = hands(i) Then
+                    res = res Or (1 << i)
+                    Continue For
+                End If
+            Next
         Next
 
+        Console.Write(res)
+        Return res
     End Function
 
     Function GetMaxExp(checker As HandRankChecker,
@@ -162,7 +171,6 @@ Module Module1
         Return sumExp / sumCount
     End Function
 
-
     Function GetMaxExp(checker As HandRankChecker,
                        deck As List(Of Integer),
                        hand1 As Integer,
@@ -198,7 +206,7 @@ Module Module1
         ' 再帰呼び出しの終端
         If elements.Count < choose Then
             Return New List(Of List(Of T))()
-        ElseIf choose < 0 Then
+        ElseIf choose <= 0 Then
             Dim resList As New List(Of List(Of T)) From {
                 New List(Of T)
             }

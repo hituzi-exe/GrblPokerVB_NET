@@ -139,9 +139,7 @@
             Return False
         End If
 
-
-        Return (hand1 Or hand2 Or hand3 Or hand4 Or hand5) And (&H1FFF) = (&H1E01)
-
+        Return ((hand1 Or hand2 Or hand3 Or hand4 Or hand5) And (&H1FFF)) = (&B1111000000001)
     End Function
 
 

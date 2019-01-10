@@ -24,8 +24,18 @@ Imports GrblPokerVB_NET
         Dim card As New Cards()
         Dim c1 = card.Convert("s1")
 
+        '                  cdhs---kqjt987654321
         Assert.AreEqual(c1, &B10000000000000001)
     End Sub
+
+    <TestMethod()> Public Sub TestConvert_ck()
+        Dim card As New Cards()
+        Dim c1 = card.Convert("ck")
+
+        '                     cdhs---kqjt987654321
+        Assert.AreEqual(c1, &B10000001000000000000)
+    End Sub
+
 
     <TestMethod()> Public Sub TestIsFlush()
         Dim card As New Cards()

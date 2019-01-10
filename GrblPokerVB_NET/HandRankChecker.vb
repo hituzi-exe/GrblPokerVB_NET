@@ -82,10 +82,23 @@
             cntList(MyLog2(c)) += 1
         Next
 
-        Dim maxCnt As Integer = cntList.Max() + cntList(13)
-        Dim pairCnt As Integer = cntList.Count(Function(e) e > 1)
+        Dim maxCnt As Integer = 0
+        Dim pairCnt As Integer = 0
+        For Each c In cntList
+            If c = 0 Then
+                Continue For
+            End If
 
-        Return Tuple.Create(maxCnt, pairCnt)
+            If maxCnt < c Then
+                maxCnt = c
+            End If
+
+            If c > 1 Then
+                pairCnt += 1
+            End If
+        Next
+
+        Return Tuple.Create(maxCnt + cntList(13), pairCnt)
     End Function
 
     Public Function IsFlush(hand1 As Integer,

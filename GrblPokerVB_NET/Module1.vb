@@ -3,7 +3,14 @@
 Module Module1
 
     Function Main() As Integer
-        Dim res = GetMaxExpectation("s1", "s3", "h6", "h8", "J")
+        Dim res = GetMaxExpectation("s1", "s3", "h6", "h8", "h9")
+        GetMaxExpectation("s1", "s3", "h6", "h8", "h9")
+        GetMaxExpectation("h2", "s3", "h6", "h8", "hq")
+        GetMaxExpectation("s1", "s3", "h6", "h8", "h9")
+        GetMaxExpectation("h4", "s3", "h6", "ht", "h9")
+        GetMaxExpectation("c7", "s3", "h6", "hj", "h9")
+        GetMaxExpectation("ck", "s3", "h6", "h8", "h9")
+
 
         Return res
         'Dim args As String() = Environment.GetCommandLineArgs()
@@ -67,7 +74,7 @@ Module Module1
             Next
         Next
 
-        Console.Write(res)
+        Console.WriteLine(res)
         Return res
     End Function
 

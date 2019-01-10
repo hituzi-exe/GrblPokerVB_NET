@@ -1,28 +1,23 @@
 ﻿Public Class HandRankChecker
 
     Private rate As IRate
-    Private numOfAKindMap As List(Of Integer)
+    Public Property numOfAKindMap As List(Of Integer)
 
     Public Sub New(r As IRate)
         rate = r
-        numOfAKindMap = CreateNumOfAKindMap()
+        numOfAKindMap = {rate.NotPair(), rate.NotPair(), rate.NotPair(),
+                         rate.NotPair(), rate.OnePair(), rate.TwoPair(),
+                         rate.NotPair(), rate.ThreeOfAKind(), rate.FullHouse(),
+                         rate.NotPair(), rate.FourOfAKind(), rate.NotPair(),
+                         rate.NotPair(), rate.FiveOfAKind(), rate.NotPair()}.ToList
     End Sub
-
-    Public Function CreateNumOfAKindMap() As List(Of Integer)
-        Return {rate.NotPair(), rate.NotPair(), rate.NotPair(),
-                rate.NotPair(), rate.OnePair(), rate.TwoPair(),
-                rate.NotPair(), rate.ThreeOfAKind(), rate.FullHouse(),
-                rate.NotPair(), rate.FourOfAKind(), rate.NotPair(),
-                rate.NotPair(), rate.FiveOfAKind(), rate.NotPair()}.ToList
-    End Function
-
 
     Public Function GetHandRank(hand1 As Integer,
                                 hand2 As Integer,
                                 hand3 As Integer,
                                 hand4 As Integer,
                                 hand5 As Integer) As Integer
-        Dim pair = GetRateNumOfAKind(hand1, hand2, hand3, hand4, hand5)
+        Dim pair As Integer = GetRateNumOfAKind(hand1, hand2, hand3, hand4, hand5)
 
         If pair <> rate.NotPair() Then
             Return pair
@@ -76,7 +71,7 @@
                               hand3 As Integer,
                               hand4 As Integer,
                               hand5 As Integer) As Tuple(Of Integer, Integer)
-        Dim cntList = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
+        Dim cntList As Integer() = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
         Dim cnt = {hand1 And (&H1FFF),
                    hand2 And (&H1FFF),
                    hand3 And (&H1FFF),
@@ -87,9 +82,8 @@
             cntList(MyLog2(c)) += 1
         Next
 
-        Dim maxCnt = cntList.Max() + cntList(13)
-        Dim pairCnt = cntList.Count(Function(e) e > 1)
-
+        Dim maxCnt As Integer = cntList.Max() + cntList(13)
+        Dim pairCnt As Integer = cntList.Count(Function(e) e > 1)
 
         Return Tuple.Create(cntList.Max() + cntList(13), pairCnt)
     End Function

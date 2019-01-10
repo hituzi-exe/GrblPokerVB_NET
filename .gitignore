@@ -1,6 +1,8 @@
 .vs
 *.un~
 *.swp
+*.vspx
+*.psess
 packages/
 GrblPokerVB_NET/bin
 GrblPokerVB_NET/obj

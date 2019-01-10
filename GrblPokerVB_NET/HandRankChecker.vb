@@ -114,15 +114,22 @@
             Return True
         End If
 
-        Dim handlist = {hand1, hand2, hand3, hand4, hand5}
+        Dim inJoker = ((hand1 = &HF0000) Or (hand2 = &HF0000) Or (hand3 = &HF0000) Or (hand4 = &HF0000) Or (hand5 = &HF0000))
         ' Jokerがなければストレート不成立
-        If Not handlist.ToList().Any(Function(e) e = &HF0000) Then
+        If Not inJoker Then
             Return False
         End If
 
-        Dim straightList = {&HF, &H1D, &H1B, &H17, &H1C01, &H1601, &H1A01, &HC01}
+        Dim straightFlg = (&HF = checkbit) Or
+                          (&H1D = checkbit) Or
+                          (&H1B = checkbit) Or
+                          (&H17 = checkbit) Or
+                          (&H1C01 = checkbit) Or
+                          (&H1601 = checkbit) Or
+                          (&H1A01 = checkbit) Or
+                          (&HC01 = checkbit)
 
-        Return straightList.ToList().Any(Function(e) e = checkbit)
+        Return straightFlg
     End Function
 
 

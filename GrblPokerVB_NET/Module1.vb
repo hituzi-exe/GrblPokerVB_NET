@@ -39,4 +39,27 @@ Module Module1
         Return 0
 
     End Function
+
+    Function GetMaxExpectation(hand1 As String,
+                               hand2 As String,
+                               hand3 As String,
+                               hand4 As String,
+                               hand5 As String) As Integer
+
+        Dim c As New Cards()
+        Dim deck = c.CreateDeck()
+        Dim hands = {hand1, hand2, hand3, hand4, hand5}.
+            ToList().
+            Select(Of Integer)(Function(e) c.Convert(e))
+
+
+        deck.RemoveAll(AddressOf hands.Contains)
+
+
+
+
+
+    End Function
+
+
 End Module

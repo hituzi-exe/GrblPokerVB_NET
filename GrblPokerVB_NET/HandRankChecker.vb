@@ -146,11 +146,13 @@
 
 
     Public Function MyLog2(x As Integer) As Integer
-        If x = 0 Then
-            Return 13
-        End If
+        For i As Integer = 0 To 13
+            If (x And (1 << i)) > 0 Then
+                Return i
+            End If
+        Next
 
-        Return Int(Math.Log(x, 2))
+        Return 13
     End Function
 
 

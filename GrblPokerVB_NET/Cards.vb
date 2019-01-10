@@ -26,7 +26,7 @@
         End If
 
         Dim suitsStr As String = "sdhc"
-        Dim numsStr As String = "a23456789tjqk"
+        Dim numsStr As String = "123456789tjqk"
 
 
         Dim suit As String = hand.Substring(0, 1)
@@ -51,7 +51,7 @@
         Dim num As Integer = hand And &H1FFF
 
         Dim suitsStr As String = "sdhc"
-        Dim numsStr As String = "a23456789tjqk"
+        Dim numsStr As String = "123456789tjqk"
 
         Return GetChar(suitsStr, MyLog2(suits)) & GetChar(numsStr, MyLog2(num))
 

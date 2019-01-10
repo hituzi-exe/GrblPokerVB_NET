@@ -72,15 +72,12 @@
                               hand4 As Integer,
                               hand5 As Integer) As Tuple(Of Integer, Integer)
         Dim cntList As Integer() = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
-        Dim cnt = {hand1 And (&H1FFF),
-                   hand2 And (&H1FFF),
-                   hand3 And (&H1FFF),
-                   hand4 And (&H1FFF),
-                   hand5 And (&H1FFF)}
 
-        For Each c In cnt
-            cntList(MyLog2(c)) += 1
-        Next
+        cntList(MyLog2(hand1 And (&H1FFF))) += 1
+        cntList(MyLog2(hand2 And (&H1FFF))) += 1
+        cntList(MyLog2(hand3 And (&H1FFF))) += 1
+        cntList(MyLog2(hand4 And (&H1FFF))) += 1
+        cntList(MyLog2(hand5 And (&H1FFF))) += 1
 
         Dim maxCnt As Integer = 0
         Dim pairCnt As Integer = 0

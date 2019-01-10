@@ -17,16 +17,17 @@
                                 hand3 As Integer,
                                 hand4 As Integer,
                                 hand5 As Integer) As Integer
-        Dim pair As Integer = GetRateNumOfAKind(hand1, hand2, hand3, hand4, hand5)
-
-        If pair <> rate.NotPair() Then
-            Return pair
-        End If
 
         Dim flushFlg As Boolean = IsFlush(hand1, hand2, hand3, hand4, hand5)
+
+        If Not flushFlg Then
+            Dim pair As Integer = GetRateNumOfAKind(hand1, hand2, hand3, hand4, hand5)
+            If pair <> rate.NotPair() Then
+                Return pair
+            End If
+        End If
+
         Dim straightFlg As Boolean = IsStraight(hand1, hand2, hand3, hand4, hand5)
-
-
         If Not (flushFlg Or straightFlg) Then
             Return rate.HighCard()
         End If
@@ -61,8 +62,7 @@
 
         Dim resul As Tuple(Of Integer, Integer) = PairCount(hand1, hand2, hand3, hand4, hand5)
 
-
-        Return numOfAKindMap(resul.Item1 + (resul.Item2 - 1) * 3)
+        Return numOfAKindMap(resul.Item2 + (resul.Item1 - 1) * 3)
     End Function
 
 

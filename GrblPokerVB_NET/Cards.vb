@@ -53,7 +53,7 @@
         Dim suitsStr As String = "sdhc"
         Dim numsStr As String = "123456789tjqk"
 
-        Return GetChar(suitsStr, MyLog2(suits)) & GetChar(numsStr, MyLog2(num))
+        Return GetChar(suitsStr, MyLog2(suits) + 1) & GetChar(numsStr, MyLog2(num) + 1)
 
     End Function
 

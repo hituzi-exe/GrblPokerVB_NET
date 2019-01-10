@@ -85,7 +85,7 @@
         Dim maxCnt As Integer = cntList.Max() + cntList(13)
         Dim pairCnt As Integer = cntList.Count(Function(e) e > 1)
 
-        Return Tuple.Create(cntList.Max() + cntList(13), pairCnt)
+        Return Tuple.Create(maxCnt, pairCnt)
     End Function
 
     Public Function IsFlush(hand1 As Integer,

@@ -60,9 +60,14 @@
             Return rate.NotPair()
         End If
 
-        Dim resul As Tuple(Of Integer, Integer) = PairCount(hand1, hand2, hand3, hand4, hand5)
+        'Dim resul As Tuple(Of Integer, Integer) = PairCount(hand1, hand2, hand3, hand4, hand5)
 
-        Return numOfAKindMap(resul.Item2 + (resul.Item1 - 1) * 3)
+        'Return numOfAKindMap(resul.Item2 + (resul.Item1 - 1) * 3)
+
+        Dim index As Integer = PairCount(hand1, hand2, hand3, hand4, hand5)
+
+
+        Return numOfAKindMap(index)
     End Function
 
 
@@ -70,7 +75,7 @@
                               hand2 As Integer,
                               hand3 As Integer,
                               hand4 As Integer,
-                              hand5 As Integer) As Tuple(Of Integer, Integer)
+                              hand5 As Integer) As Integer
         Dim cntList As Integer() = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
 
         cntList(MyLog2(hand1 And (&H1FFF))) += 1
@@ -95,7 +100,7 @@
             End If
         Next
 
-        Return Tuple.Create(maxCnt + cntList(13), pairCnt)
+        Return pairCnt + (maxCnt + cntList(13) - 1) * 3
     End Function
 
     Public Function IsFlush(hand1 As Integer,
@@ -114,13 +119,9 @@
 
         Dim handNum As Integer = (hand1 Or hand2 Or hand3 Or hand4 Or hand5) And (&H1FFF)
 
-        Dim checkbit As Integer = Int(handNum / (handNum And (-handNum)))
+        Dim checkbit As Integer = (handNum / (handNum And (-handNum)))
 
-        If (checkbit = &H1F) Then
-            Return True
-        End If
-
-        If checkbit = &H1E01 Then
+        If (checkbit = &H1F) Or (checkbit = &H1E01) Then
             Return True
         End If
 
@@ -161,13 +162,44 @@
 
 
     Public Function MyLog2(x As Integer) As Integer
-        For i As Integer = 0 To 13
-            If (x And (1 << i)) > 0 Then
-                Return i
-            End If
-        Next
+        'For i As Integer = 0 To 13
+        '    If (x And (1 << i)) > 0 Then
+        '        Return i
+        '    End If
+        'Next
 
-        Return 13
+        'Return 13
+
+        Select Case x And (-x)
+            Case &B1
+                Return 0
+            Case &B10
+                Return 1
+            Case &B100
+                Return 2
+            Case &B1000
+                Return 3
+            Case &B10000
+                Return 4
+            Case &B100000
+                Return 5
+            Case &B1000000
+                Return 6
+            Case &B10000000
+                Return 7
+            Case &B100000000
+                Return 8
+            Case &B1000000000
+                Return 9
+            Case &B10000000000
+                Return 10
+            Case &B100000000000
+                Return 11
+            Case &B1000000000000
+                Return 12
+            Case Else
+                Return 13
+        End Select
     End Function
 
 

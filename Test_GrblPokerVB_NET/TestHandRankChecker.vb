@@ -121,11 +121,8 @@ Imports GrblPokerVB_NET
         'Dim resul As Tuple(Of Integer, Integer) =
         Dim res = c.PairCount(c1, c2, c3, c4, c5)
 
-        Dim max = res.Item1
-        Dim pairNum = res.Item2
 
-        Assert.AreEqual(max, 2)
-        Assert.AreEqual(pairNum, 0)
+        Assert.AreEqual(res, 3)
     End Sub
 
 

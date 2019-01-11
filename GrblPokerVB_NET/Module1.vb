@@ -3,19 +3,9 @@
 Module Module1
 
     Function Main() As Integer
-        Dim res = GetMaxExpectation("s1", "s3", "h6", "h8", "h9")
-        GetMaxExpectation("s1", "s3", "h6", "h8", "h9")
-        GetMaxExpectation("h2", "s3", "h6", "h8", "hq")
-        GetMaxExpectation("s1", "s3", "h6", "h8", "h9")
-        GetMaxExpectation("h4", "s3", "h6", "ht", "h9")
-        GetMaxExpectation("c7", "s3", "h6", "hj", "h9")
-        GetMaxExpectation("ck", "s3", "h6", "h8", "h9")
-
-
-        Return res
-        'Dim args As String() = Environment.GetCommandLineArgs()
-
-        'Return GetMaxExpectation(args(1), args(2), args(3), args(4), args(5))
+        Dim args As String() = Environment.GetCommandLineArgs()
+        ' args(0)にはexe名が入ってくる
+        Return GetMaxExpectation(args(1), args(2), args(3), args(4), args(5))
     End Function
 
     Function GetMaxExpectation(hand1 As String,
@@ -74,7 +64,6 @@ Module Module1
             Next
         Next
 
-        Console.WriteLine(res)
         Return res
     End Function
 
@@ -220,7 +209,7 @@ Module Module1
             Return resList
         End If
 
-        For n As Integer = 1 To elements.Count - 1
+        For n As Integer = 1 To elements.Count
             Dim subRet = Combination(elements.Skip(n).ToList(), choose - 1)
 
             For Each s In subRet
